@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block a%}<a class="navbar-brand" href="#">Accueil</a>{% endblock %}
+{% block body%}<h1>Bienvenue sur la page d'accueil du test "Création d’une gestion des droits"</h1>
+<br>
+<h3>Pseudo et mot de passe permettant l'accés au différent compte utilisateur:</h3>
+<ul>
+    <li>superadmin   -   Pass1  
+    - Accès à tous les rôles de l’application
+    </li>
+
+    <li>direction   -   Pass2 
+    - Dispose de tous les rôles sauf celui paramétrage de l’application
+    </li>
+
+    <li>Humanressource   
+    -   Pass3- Dispose des rôles :
+    • création de payes
+    • gestion documentaire
+    • agenda
+    </li>
+
+    <li>manager   -   Pass4 - Dispose des rôles :
+    • agenda
+    • consultation chantier
+    • réunions d’équipes
+    </li>
+
+    <li>
+    operateur   -   Pass5 
+    - Dispose des rôles :
+    • agenda
+</li>
+    </ul>
+    <br>
+
+<p>
+
+{% endblock %}

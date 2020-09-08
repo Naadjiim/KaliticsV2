@@ -1,0 +1,45 @@
+security:
+    encoders:
+        App\Entity\User:
+            algorithm: auto
+    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+
+    providers:
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: pseudo
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: lazy
+            provider: app_user_provider
+            guard:
+                authenticators:
+                    - App\Security\LoginAuthenticator
+            access_denied_url: "denied_acces"
+            logout:
+                path: app_logout
+                target: home
+                # where to redirect after logout
+                # target: app_any_route
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/super_admin, roles: [ROLE_APP_SETTING] }
+        - { path: ^/payslip, roles: [ROLE_PAY, ROLE_APP_SETTING] }
+        - { path: ^/management, roles: [ROLE_GED, ROLE_APP_SETTING] }
+        - { path: ^/agenda, roles: [ROLE_AGENDA, ROLE_APP_SETTING] }
+        - { path: ^/meeting, roles: [ROLE_TEAM_MEETING, ROLE_APP_SETTING] }
+        - { path: ^/consultation, roles: [ROLE_SITE, ROLE_APP_SETTING] }
+        - { path: ^/user/(.+)/edit, roles: [IS_AUTHENTICATED_FULLY] }
