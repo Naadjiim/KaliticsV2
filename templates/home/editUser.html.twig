@@ -2,16 +2,17 @@
 
 
 {% block body %}
-    <h1>Ajouter/Supprimer des roles</h1>
-    <form action="{{ path('user_edit_role', {'id': app.user.id}) }}" method="post">
+    <h1>Editer fonction</h1>
+    
+    <form action="{{ path('user_edit_role', {'id':app.request.get('id')}) }}" method="post">
         <div class="form-group">
-            <label for="roles">Selection</label>
-            <select name="function[]" id="roles" multiple class="form-control">
-                {% for role in roles %}
+            <label for="roles">Select roles</label>
+            <select name="function" id="function" multiple class="form-control">
+                {% for role in functionuser %}
                     <option value="{{ role.name }}" {{ role.name in app.user.roles ? 'selected="selected"' : '' }}>{{ role.name }}</option>
                 {% endfor %}
             </select>
         </div>
-        <button type="submit" class="btn btn-primary">ok</button>
+        <button type="submit" class="btn btn-primary">Modifier</button>
     </form>
 {% endblock %}

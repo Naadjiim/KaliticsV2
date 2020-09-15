@@ -2,11 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\FunctionUser;
-use App\Entity\Role;
-use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
+use App\Repository\FunctionUserRepository;
+use App\Repository\UserRepository;
 use Symfony\Component\Routing\Annotation\Route;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -83,30 +80,16 @@ class HomeController extends AbstractController
     }
 
 
-    /**
-     * @Route("/user/{id}/edit", name="user_edit_role")
+
+
+        /**
+     * @Route("/list", name="liste")
      */
-    public function editRoleAction(EntityManagerInterface $manager, Request $request, User $user)
+    public function usersList(UserRepository $users, FunctionUserRepository $function)
     {
-        $functionId = $request->request->get('function');
-        $functionRepo = $manager->getRepository(FunctionUser::class);
-        $roles = $manager->getRepository(Role::class)->findAll();
-        if ($request->request->has('function')) {
-            $user->setRoles($request->request->get('function'));
-
-//            $function = $functionRepo->find($functionId);
-//            $user->setFunctionUser($function);
-            $manager->persist($user);
-            $manager->flush();
-
-            return $this->redirectToRoute('user_edit_role', [
-                'id' => $user->getId()
-            ]);
-        }
-
-
-        return $this->render('home/editUser.html.twig', [
-            'roles' => $roles
+        return $this->render('home/liste.html.twig', [
+            'users' => $users->findAll(),
+            'function'=> $function->findAll()
         ]);
     }
 

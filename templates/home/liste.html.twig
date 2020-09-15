@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<h1>Liste des utilisateurs</h1>
+
+    <a href="#" class="list-group-item list-group-item-action active">
+        Utilisateurs
+    </a>
+
+    <table class="table table-borderless table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Pseudo</th>
+                <th scope="col">Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        {% for user in users %}
+        <tbody>
+            <tr>
+                <td>{{ user.pseudo }}</td>
+
+                <td>
+
+                    {% if user.functionUser.id == 1 %}
+                    Super administrateur
+                    {% elseif user.functionUser.id == 2 %}
+                    Direction
+                    {% elseif user.functionUser.id == 3 %}
+                    Ressources humaines
+                    {% elseif user.functionUser.id == 4 %}
+                    Manager d’équipes
+                    {% elseif user.functionUser.id == 5 %}
+                    Opérateur
+                    {% endif %}
+                </td>
+
+                <td>
+                    <a href="{{ path('user_edit_role', {'id': user.id}) }}">Modifier</a>
+                </td>
+            </tr>
+
+            {% else %}
+            <p>Aucun utilisateur inscrit</p>
+            {% endfor %}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
