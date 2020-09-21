@@ -7,7 +7,7 @@
     <form action="{{ path('user_edit_role', {'id':app.request.get('id')}) }}" method="post">
         <div class="form-group">
             <label for="roles">Select roles</label>
-            <select name="function" id="function" multiple class="form-control">
+            <select name="function" id="function" multiple class="custom-select" size="5">
                 {% for role in functionuser %}
                     <option value="{{ role.name }}" {{ role.name in app.user.roles ? 'selected="selected"' : '' }}>{{ role.name }}</option>
                 {% endfor %}

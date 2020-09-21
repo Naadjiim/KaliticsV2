@@ -42,5 +42,5 @@ security:
         - { path: ^/agenda, roles: [ROLE_AGENDA, ROLE_APP_SETTING] }
         - { path: ^/meeting, roles: [ROLE_TEAM_MEETING, ROLE_APP_SETTING] }
         - { path: ^/consultation, roles: [ROLE_SITE, ROLE_APP_SETTING] }
-        - { path: ^/list, roles: [IS_AUTHENTICATED_FULLY] }
-        - { path: ^/user/(.+)/edit, roles: [IS_AUTHENTICATED_FULLY] }
+        - { path: ^/list, roles: [ROLE_APP_SETTING] }
+        - { path: ^/user/(.+)/edit, roles: [ROLE_APP_SETTING] }

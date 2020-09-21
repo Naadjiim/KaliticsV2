@@ -39,6 +39,14 @@
                 <td>
                     <a href="{{ path('user_edit_role', {'id': user.id}) }}">Modifier</a>
                 </td>
+
+                <td>
+                    <a href="{{ path('add_Role', {'id': user.id}) }}">Ajouter role</a>
+                </td>
+
+                <td>
+                    <a href="{{ path('remove_Role', {'id': user.id}) }}">Supprimer role</a>
+                </td>
             </tr>
 
             {% else %}

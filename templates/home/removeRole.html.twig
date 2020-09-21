@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    <h1>Editer fonction</h1>
+    
+    <form action="{{ path('remove_Role', {'id':app.request.get('id')}) }}" method="post">
+        <div class="form-group">
+            <label for="roles">Supprimer un ou plusieur role</label>
+            <select name="function[]" id="function" multiple class="custom-select" size="5">
+                {% for role in roles %}
+                    <option value="{{ role.name }}" {{ role.name in app.user.roles ? 'selected="selected"' : '' }}>{{ role.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Supprimer</button>
+    </form>
+{% endblock %}
